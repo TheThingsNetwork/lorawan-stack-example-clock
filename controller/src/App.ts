@@ -53,14 +53,18 @@ class App {
     let target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(),
       now.getMinutes() + (now.getSeconds() <= 50 ? 1 : 2),
     )
-    console.log(`sync clock ${devID}: now = ${now.toJSON()}; target = ${target.toJSON()}`)
+    let unixTime = target.getTime() / 1000
+    console.log(`sync clock ${devID}: now = ${now.toJSON()}; `
+      + `target = ${target.toJSON()}; `
+      + `unix time = ${unixTime}`)
 
     let buffer = Buffer.allocUnsafe(4)
-    buffer.writeUInt32LE(target.getTime() / 1000, 0)
+    buffer.writeUInt32LE(unixTime, 0)
 
     await this.replaceQueue(devID, [
       {
         ...App.defaultDownlinkMessage,
+        "f_port": 2,
         "frm_payload": Array.from(buffer),
         "class_b_c": {
           "absolute_time": target,

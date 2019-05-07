@@ -101,17 +101,20 @@ var App = /** @class */ (function () {
     };
     App.prototype.syncClock = function (devID) {
         return __awaiter(this, void 0, void 0, function () {
-            var now, target, buffer;
+            var now, target, unixTime, buffer;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         now = new Date();
                         target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes() + (now.getSeconds() <= 50 ? 1 : 2));
-                        console.log("sync clock " + devID + ": now = " + now.toJSON() + "; target = " + target.toJSON());
+                        unixTime = target.getTime() / 1000;
+                        console.log("sync clock " + devID + ": now = " + now.toJSON() + "; "
+                            + ("target = " + target.toJSON() + "; ")
+                            + ("unix time = " + unixTime));
                         buffer = Buffer.allocUnsafe(4);
-                        buffer.writeUInt32LE(target.getTime() / 1000, 0);
+                        buffer.writeUInt32LE(unixTime, 0);
                         return [4 /*yield*/, this.replaceQueue(devID, [
-                                __assign({}, App.defaultDownlinkMessage, { "frm_payload": Array.from(buffer), "class_b_c": {
+                                __assign({}, App.defaultDownlinkMessage, { "f_port": 2, "frm_payload": Array.from(buffer), "class_b_c": {
                                         "absolute_time": target,
                                     } }),
                             ])];
@@ -123,7 +126,7 @@ var App = /** @class */ (function () {
         });
     };
     App.defaultDownlinkMessage = {
-        "f_port": 15,
+        "f_port": 1,
         priority: "NORMAL",
     };
     return App;
