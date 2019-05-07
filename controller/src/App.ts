@@ -17,7 +17,7 @@ import DownlinkMessage from "./DownlinkMessage"
 
 class App {
   private static defaultDownlinkMessage: DownlinkMessage = {
-    "f_port": 15,
+    "f_port": 1,
     priority: "NORMAL",
   }
 
