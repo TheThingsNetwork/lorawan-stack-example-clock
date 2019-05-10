@@ -106,7 +106,7 @@ var App = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         now = new Date();
-                        target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes() + (now.getSeconds() <= 50 ? 1 : 2));
+                        target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds() + 10);
                         unixTime = target.getTime() / 1000;
                         console.log("sync clock " + devID + ": now = " + now.toJSON() + "; "
                             + ("target = " + target.toJSON() + "; ")

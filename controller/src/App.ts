@@ -50,8 +50,8 @@ class App {
 
   public async syncClock(devID: string): Promise<void> {
     let now = new Date()
-    let target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(),
-      now.getMinutes() + (now.getSeconds() <= 50 ? 1 : 2),
+    let target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes(),
+      now.getSeconds() + 10,
     )
     let unixTime = target.getTime() / 1000
     console.log(`sync clock ${devID}: now = ${now.toJSON()}; `
