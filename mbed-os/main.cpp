@@ -111,61 +111,61 @@ static void receive_message() {
   printf("\r\n");
 
   switch (port) {
-    case F_PORT_SYNC_CLOCK: {
-      if (retcode != 4) {
-        printf("Unexpected length of SYNC_CLOCK message (%d)\r\n", retcode);
-        return;
-      }
-      time_t *t = (time_t *)rx_buffer;
-      // TODO: Communicate DST out-of-band and apply timezone offset.
-      set_time(*t);
-      printf("Synchronized clock to %s", ctime(t));
+  case F_PORT_SYNC_CLOCK: {
+    if (retcode != 4) {
+      printf("Unexpected length of SYNC_CLOCK message (%d)\r\n", retcode);
+      return;
     }
+    time_t *t = (time_t *)rx_buffer;
+    // TODO: Communicate DST out-of-band and apply timezone offset.
+    set_time(*t);
+    printf("Synchronized clock to %s", ctime(t));
+  }
   }
 }
 
 static void lora_event_handler(lorawan_event_t event) {
   switch (event) {
-    case CONNECTED: {
-      printf("Joined network\r\n");
-      lorawan_status_t retcode = lorawan.set_device_class(CLASS_C);
-      if (retcode != LORAWAN_STATUS_OK) {
-        printf("Failed to switch to class C, code = %d\n", retcode);
-        return;
-      }
-      printf("Switched to class C\r\n");
-      // Send an empty message to confirm the session.
-      send_message(1, 0);
-      break;
+  case CONNECTED: {
+    printf("Joined network\r\n");
+    lorawan_status_t retcode = lorawan.set_device_class(CLASS_C);
+    if (retcode != LORAWAN_STATUS_OK) {
+      printf("Failed to switch to class C, code = %d\n", retcode);
+      return;
     }
-    case DISCONNECTED:
-      ev_queue.break_dispatch();
-      printf("Reset session\r\n");
-      break;
-    case TX_DONE:
-      printf("Message sent\r\n");
-      break;
-    case TX_TIMEOUT:
-    case TX_ERROR:
-    case TX_CRYPTO_ERROR:
-    case TX_SCHEDULING_ERROR:
-      printf("Failed to transmit; code = %d\r\n", event);
-      break;
-    case RX_DONE:
-      receive_message();
-      break;
-    case RX_TIMEOUT:
-    case RX_ERROR:
-      printf("Failed to receive; code = %d\r\n", event);
-      break;
-    case JOIN_FAILURE:
-      printf("Failed to join; check credentials\r\n");
-      break;
-    case UPLINK_REQUIRED:
-      printf("Network Server requests uplink\r\n");
-      send_message(1, 0);
-      break;
-    default:
-      MBED_ASSERT("Unknown event");
+    printf("Switched to class C\r\n");
+    // Send an empty message to confirm the session.
+    send_message(1, 0);
+    break;
+  }
+  case DISCONNECTED:
+    ev_queue.break_dispatch();
+    printf("Reset session\r\n");
+    break;
+  case TX_DONE:
+    printf("Message sent\r\n");
+    break;
+  case TX_TIMEOUT:
+  case TX_ERROR:
+  case TX_CRYPTO_ERROR:
+  case TX_SCHEDULING_ERROR:
+    printf("Failed to transmit; code = %d\r\n", event);
+    break;
+  case RX_DONE:
+    receive_message();
+    break;
+  case RX_TIMEOUT:
+  case RX_ERROR:
+    printf("Failed to receive; code = %d\r\n", event);
+    break;
+  case JOIN_FAILURE:
+    printf("Failed to join; check credentials\r\n");
+    break;
+  case UPLINK_REQUIRED:
+    printf("Network Server requests uplink\r\n");
+    send_message(1, 0);
+    break;
+  default:
+    MBED_ASSERT("Unknown event");
   }
 }
