@@ -152,6 +152,7 @@
 #define MBED_CONF_MBED_MESH_API_WISUN_UC_CHANNEL_FUNCTION                     255                                                                                                // set by library:mbed-mesh-api
 #define MBED_CONF_MBED_MESH_API_WISUN_UC_DWELL_INTERVAL                       0                                                                                                  // set by library:mbed-mesh-api
 #define MBED_CONF_MBED_MESH_API_WISUN_UC_FIXED_CHANNEL                        0xffff                                                                                             // set by library:mbed-mesh-api
+#define MBED_CONF_MBED_TRACE_ENABLE                                           1                                                                                                  // set by application[*]
 #define MBED_CONF_MCR20A_PROVIDE_DEFAULT                                      0                                                                                                  // set by library:mcr20a
 #define MBED_CONF_NANOSTACK_CONFIGURATION                                     nanostack_full                                                                                     // set by library:nanostack
 #define MBED_CONF_NANOSTACK_HAL_CRITICAL_SECTION_USABLE_FROM_INTERRUPT        0                                                                                                  // set by library:nanostack-hal

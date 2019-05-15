@@ -64,7 +64,7 @@
   },
   "target_overrides": {
     "*": {
-      "mbed-trace.enable": false,
+      "mbed-trace.enable": true,
       "platform.stdio-convert-newlines": true,
       "platform.stdio-baud-rate": 115200,
       "platform.default-serial-baud-rate": 115200,
