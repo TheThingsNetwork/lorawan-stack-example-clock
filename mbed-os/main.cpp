@@ -104,23 +104,22 @@ static void receive_message() {
     return;
   }
 
-  printf("Received message on port %u (%d bytes): ", port, retcode);
+  printf("Received message on port %u (%d bytes, flags = %d): ", port, retcode, flags);
   for (uint8_t i = 0; i < retcode; i++) {
     printf("%02x ", rx_buffer[i]);
   }
   printf("\r\n");
 
   switch (port) {
-  case F_PORT_SYNC_CLOCK: {
+  case F_PORT_SYNC_CLOCK:
     if (retcode != 4) {
       printf("Unexpected length of SYNC_CLOCK message (%d)\r\n", retcode);
-      return;
+      break;
     }
     time_t *t = (time_t *)rx_buffer;
     // TODO: Communicate DST out-of-band and apply timezone offset.
     set_time(*t);
     printf("Synchronized clock to %s", ctime(t));
-  }
   }
 }
 
