@@ -73,13 +73,13 @@
 #define MBED_CONF_GENERIC_AT3GPP_BAUDRATE                                     115200                                                                                             // set by library:GENERIC_AT3GPP
 #define MBED_CONF_GENERIC_AT3GPP_PROVIDE_DEFAULT                              0                                                                                                  // set by library:GENERIC_AT3GPP
 #define MBED_CONF_LORA_ADR_ON                                                 1                                                                                                  // set by library:lora
-#define MBED_CONF_LORA_APPLICATION_EUI                                        { 0x42, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }                                                 // set by application[*]
-#define MBED_CONF_LORA_APPLICATION_KEY                                        { 0x42, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } // set by application[*]
+#define MBED_CONF_LORA_APPLICATION_EUI                                        { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }                                                 // set by application[*]
+#define MBED_CONF_LORA_APPLICATION_KEY                                        { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 } // set by application[*]
 #define MBED_CONF_LORA_APPSKEY                                                {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}   // set by library:lora
 #define MBED_CONF_LORA_APP_PORT                                               15                                                                                                 // set by library:lora
 #define MBED_CONF_LORA_AUTOMATIC_UPLINK_MESSAGE                               1                                                                                                  // set by library:lora
 #define MBED_CONF_LORA_DEVICE_ADDRESS                                         0x00000000                                                                                         // set by library:lora
-#define MBED_CONF_LORA_DEVICE_EUI                                             { 0x42, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }                                                 // set by application[*]
+#define MBED_CONF_LORA_DEVICE_EUI                                             { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }                                                 // set by application[*]
 #define MBED_CONF_LORA_DOWNLINK_PREAMBLE_LENGTH                               5                                                                                                  // set by library:lora
 #define MBED_CONF_LORA_DUTY_CYCLE_ON                                          1                                                                                                  // set by application[*]
 #define MBED_CONF_LORA_DUTY_CYCLE_ON_JOIN                                     1                                                                                                  // set by library:lora
