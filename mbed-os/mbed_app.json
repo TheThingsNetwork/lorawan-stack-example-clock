@@ -96,6 +96,7 @@
       "lora-tcxo": "NC"
     },
     "DISCO_L072CZ_LRWAN1": {
+      "mbed-trace.enable": false,
       "main_stack_size": 1024,
       "lora-radio": "SX1276",
       "lora-spi-mosi": "PA_7",
