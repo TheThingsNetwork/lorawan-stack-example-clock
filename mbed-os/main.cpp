@@ -32,14 +32,18 @@ uint8_t rx_buffer[30];
 #define CONFIRMED_MSG_RETRY_COUNTER 3
 
 static void lora_event_handler(lorawan_event_t event);
+static void button_event_handler();
 
 static EventQueue ev_queue(MAX_NUMBER_OF_EVENTS *EVENTS_EVENT_SIZE);
 static LoRaWANInterface lorawan(radio);
 static lorawan_app_callbacks_t callbacks;
+static InterruptIn btn(GPIO1);
 
 int main(void) {
   setup_trace();
   lorawan_status_t retcode;
+
+  btn.fall(&button_event_handler);
 
   // Initialize LoRaWAN stack
   retcode = lorawan.initialize(&ev_queue);
@@ -82,9 +86,13 @@ int main(void) {
   return 0;
 }
 
+bool busy_sending;
+
 static void send_message(uint8_t port, uint16_t packet_len) {
   int16_t retcode =
       lorawan.send(port, tx_buffer, packet_len, MSG_UNCONFIRMED_FLAG);
+  busy_sending = false;
+
   if (retcode < 0) {
     retcode == LORAWAN_STATUS_WOULD_BLOCK
         ? printf("Failed to send; duty-cycle enforced\r\n")
@@ -93,6 +101,14 @@ static void send_message(uint8_t port, uint16_t packet_len) {
   }
 
   printf("Sending %d bytes\r\n", retcode);
+}
+
+static void button_event_handler() {
+  if (busy_sending) {
+    return;
+  }
+  busy_sending = true;
+  ev_queue.call(&send_message, F_PORT_NOOP, 0);
 }
 
 static void receive_message() {
