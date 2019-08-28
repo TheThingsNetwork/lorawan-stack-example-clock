@@ -134,7 +134,7 @@ static void lora_event_handler(lorawan_event_t event) {
     }
     printf("Switched to class C\r\n");
     // Send an empty message to confirm the session.
-    send_message(1, 0);
+    send_message(F_PORT_NOOP, 0);
     break;
   }
   case DISCONNECTED:
@@ -162,7 +162,7 @@ static void lora_event_handler(lorawan_event_t event) {
     break;
   case UPLINK_REQUIRED:
     printf("Network Server requests uplink\r\n");
-    send_message(1, 0);
+    send_message(F_PORT_NOOP, 0);
     break;
   default:
     MBED_ASSERT("Unknown event");
