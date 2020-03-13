@@ -2,7 +2,7 @@
 
 This is an example project for synchronizing clocks of end devices using class C.
 
-In LoRaWAN, there are are least three ways for synchronizing end device clocks:
+In LoRaWAN, there are at least three ways for synchronizing end device clocks:
 
 1. Using [application layer clock synchronization](https://lora-alliance.org/resource-hub/lorawan-application-layer-clock-synchronization-specification-v100). This requires request/response messages per end device and do not guarantee exact time synchronization between end devices;
 2. Using class B beacons. This requires gateways with GPS sync and the end device to be aware of time zone and leap seconds;
