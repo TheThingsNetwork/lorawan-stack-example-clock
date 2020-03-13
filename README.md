@@ -13,7 +13,7 @@ This is an example application for method 3: scheduling a class C message at a f
 ## Requirements
 
 1. A LoRaWAN network powered by The Things Network Stack V3 for LoRaWAN. If you do not have a network available, please see the [Getting Started](https://github.com/TheThingsNetwork/lorawan-stack/blob/master/doc/gettingstarted.md).
-2. An LoRa™ end device capable of running the Arm Mbed OS, for example the [ST B-L072Z-LRWAN1 LoRa®Discovery kit](https://www.st.com/en/evaluation-tools/b-l072z-lrwan1.html) or [L-TEK FF1705](https://l-tek.si/web-shop/ltek-ff1705/).
+2. A LoRa® end device capable of running the Arm Mbed OS, for example the [ST B-L072Z-LRWAN1 LoRa®Discovery kit](https://www.st.com/en/evaluation-tools/b-l072z-lrwan1.html) or [L-TEK FF1705](https://l-tek.si/web-shop/ltek-ff1705/).
 3. A gateway that has either GPS lock or provides round-trip times (RTTs). When relying on RTTs, gateways running LoRa Basics™ Station or Semtech UDP Packet Forwarder 4.0 or higher (sending `TX_ACK`) can be used.
 
 ## Getting Started
